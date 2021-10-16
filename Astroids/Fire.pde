@@ -1,4 +1,5 @@
 class Fire extends GameObject {
+  //fire code
 
   int t;
   PVector nudge;
@@ -26,6 +27,7 @@ class Fire extends GameObject {
   void act() {
     super.act();
 
+    //fire decay code
     t -= 10;
     if (t<=0) {
       lives = 0;

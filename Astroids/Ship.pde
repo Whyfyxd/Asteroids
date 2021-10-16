@@ -14,7 +14,7 @@ class Ship extends GameObject {
     shotTimer = 30;
     threshold = 30;
     size = 30;
-    invThresh = 120;
+    invThresh = 180;
     inv = 0;
   }
 
@@ -25,7 +25,7 @@ class Ship extends GameObject {
     rotate (direction.heading());
     noFill ();
     stroke (255);
-    triangle (-25, -12.5, -25, 12.5, 25, 0); 
+    triangle (-25, -12.5, -25, 12.5, 25, 0);
     popMatrix();
   }
 
@@ -35,6 +35,7 @@ class Ship extends GameObject {
     shotTimer++;
     inv++;
 
+    //movement code
     if (upKey) {
       velocity.add(direction);
       myObjects.add (new Fire());
@@ -44,15 +45,19 @@ class Ship extends GameObject {
     if (downKey)  velocity.sub(direction);
     if (leftKey)  direction.rotate(-radians(5));
     if (rightKey) direction.rotate(radians(5));
-    if (spaceKey && shotTimer > threshold) { 
-      myObjects.add(new Bullet()); 
+    if (spaceKey && shotTimer > threshold) {
+      myObjects.add(new Bullet());
       shotTimer = 0;
     }
+
+    //invinceibility code
     if (inv<=invThresh) {
       stroke (255, 0, 0);
       strokeWeight(5);
       circle (location.x, location.y, 60);
     }
+
+    //gameover transition code
     if (lives == 0) {
       mode = GAMEOVER;
     }

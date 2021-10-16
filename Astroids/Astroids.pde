@@ -5,9 +5,11 @@ int mode;
 final int INTRO = 0;
 final int GAME = 1;
 final int GAMEOVER = 2;
+final int PAUSE = 3;
+final int WIN = 4;
 
 void setup() {
-  size (800, 800, FX2D);
+  size (800, 800);
   mode = INTRO;
   textAlign(CENTER, CENTER);
   rectMode(CENTER);
@@ -15,13 +17,12 @@ void setup() {
   myObjects = new ArrayList<GameObject>();
   myShip = new Ship();
 
-
-  myObjects.add(new Asteroid());
-  myObjects.add(new Asteroid());
-  myObjects.add(new Asteroid());
-  myObjects.add(new Asteroid());
-  myObjects.add(new Asteroid());
-  myObjects.add(myShip);
+    myObjects.add(new Asteroid());
+    myObjects.add(new Asteroid());
+    myObjects.add(new Asteroid());
+    myObjects.add(new Asteroid());
+    myObjects.add(new Asteroid());
+    myObjects.add(myShip);
 }
 
 void draw() {
@@ -33,6 +34,10 @@ void draw() {
     game();
   } else if (mode == GAMEOVER) {
     gameover();
+  } else if (mode == PAUSE) {
+    pause();
+  } else if (mode == WIN) {
+    Win();
   } else {
     println("error: Mode = " + mode);
   }

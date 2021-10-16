@@ -1,10 +1,12 @@
-void gameover() {
-  //gameover code
+void Win() {
 
-  background (0);
+
+  //WIN code
+
+  background (0, 0, 0);
   textSize(125);
   fill (255, 255, 255);
-  text ("GAMEOVER", 400, 250);
+  text ("WIN", 400, 250);
 
   //restart button
   fill (255, 255, 255);
@@ -14,9 +16,9 @@ void gameover() {
   textSize (75);
   text ("restart", 400, 545);
 }
-void gameoverClicks() {
+void winClicks() {
   //restart button code and game reset code
-  if (mouseX > 200 && mouseX < 500 && mouseY > 500 && mouseY < 600) {
+  if (mouseX > 200 && mouseX < 600 && mouseY > 500 && mouseY < 600) {
     myObjects.clear();
     myObjects.add(new Asteroid());
     myObjects.add(new Asteroid());

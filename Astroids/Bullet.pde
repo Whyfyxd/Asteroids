@@ -1,5 +1,5 @@
 class Bullet extends GameObject {
-
+  //bullet code
 
   int timer;
   PVector nudge;
@@ -25,6 +25,7 @@ class Bullet extends GameObject {
   void act() {
     super.act();
 
+    //bullet decay code
     timer--;
     if (timer == 0) {
       lives=0;
