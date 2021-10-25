@@ -1,4 +1,4 @@
-void game() {
+void game(int t) {
 
   //life display
   fill(0);
@@ -28,6 +28,7 @@ void game() {
   //remove objects code
   int i = 0;
   int j = 0;
+  int a = 0;
   while (i < myObjects.size()) {
     GameObject myObj = myObjects.get(i);
     myObj.show();
@@ -43,10 +44,18 @@ void game() {
     if (myObj instanceof Asteroid) {
       j++;
     }
+    //UFO checker
+    if (myObj instanceof UFO) {
+      a++;
+    }
   }
   //win condition checker
   if (j == 0) {
     mode = WIN;
+  }
+  //UFO respawner
+  if (a == 0 && t >350) {
+   myObjects.add(new UFO()); 
   }
 }
 

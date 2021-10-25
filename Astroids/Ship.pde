@@ -3,7 +3,7 @@ class Ship extends GameObject {
   //Instance variables
 
   PVector direction;
-  int shotTimer, threshold, inv, invThresh;
+  int shotTimer, threshold, inv, invThresh, teleportTimer, teleportCooldown;
 
   //Constructor(s)
   Ship() {
@@ -16,6 +16,8 @@ class Ship extends GameObject {
     size = 30;
     invThresh = 180;
     inv = 0;
+    teleportTimer = 299;
+    teleportCooldown = 0;
   }
 
   //Behavior Functions
@@ -34,6 +36,7 @@ class Ship extends GameObject {
 
     shotTimer++;
     inv++;
+    teleportTimer++;
 
     //movement code
     if (upKey) {
@@ -56,7 +59,20 @@ class Ship extends GameObject {
       strokeWeight(5);
       circle (location.x, location.y, 60);
     }
-
+    //UFO collision code
+    int i = 0;
+    while (i < myObjects.size()) {
+      GameObject myObj = myObjects.get(i);
+      if (myObj instanceof UFOBullet) {
+        if (dist(location.x, location.y, myObj.location.x, myObj.location.y) <= size/2 + myObj.size/2) {
+          myObj.lives = 0;
+          lives -=1;
+          inv=0;
+          background(255, 0, 0);
+        }
+      }
+      i++;
+    }
     //gameover transition code
     if (lives == 0) {
       mode = GAMEOVER;
